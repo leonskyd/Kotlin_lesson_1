@@ -1,42 +1,38 @@
 package com.example.lesson1_hw;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Switch;
-import android.widget.TextView;
+import android.os.Bundle
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.layout_hw.*
 
-import androidx.appcompat.app.AppCompatActivity;
+class MainActivity : AppCompatActivity() {
 
-public class MainActivity extends AppCompatActivity {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.layout_hw)
+        val button = findViewById<Button>(R.id.button1)
+        val editText1 = findViewById<EditText>(R.id.editText1)
+        val editText2 = findViewById<EditText>(R.id.editText2)
+        val textView1 = findViewById<TextView>(R.id.textView1)
+        val textView2 = findViewById<TextView>(R.id.textView2)
+        val checkbox = findViewById<CheckBox>(R.id.checkbox)
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_hw);
-        Button button = findViewById(R.id.button1);
-        final EditText editText1 = findViewById(R.id.editText1);
-        final TextView textView1 = findViewById(R.id.textView1);
-        final TextView textView2 = findViewById(R.id.textView2);
-        CheckBox checkbox = findViewById(R.id.checkbox);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+        button.setOnClickListener {
+            textView1.setText(getCountry(editText1, editText2))
+            if (checkbox.isChecked()) {
+                textView2.setText(Motherland.doAction())
             }
-        });
-    }
-    private void doTask1(TextView textView1) {
-
-    }
-
-    private void doTask2(TextView textView2) {
-
         }
-}
+    }
 
+
+    private fun  getCountry(editText1: EditText, editText2: EditText) : String {
+        val country = Country(
+                editText1.getText().toString(),
+                editText2.getText().toString())
+        return "the capital of" + country.name + "is" + country.capital
+    }
+}
