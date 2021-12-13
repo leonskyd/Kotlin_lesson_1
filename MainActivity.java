@@ -35,6 +35,4 @@ class MainActivity : AppCompatActivity() {
                 editText2.getText().toString())
         return "the capital of" + country.name + "is" + country.capital
     }
-
-
 }
